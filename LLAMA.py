@@ -1,5 +1,5 @@
 import os 
-os.environ["REPLICATE_API_TOKEN"]="r8_KUNVAZlx0XYoTnTDDSdZ3JzvTKz3EEU0zVx7z"
+os.environ["REPLICATE_API_TOKEN"]="r8_atBi6V8bfGAyFHxxLbo3qXht74gEAWP0R4JSg"
 import replicate
 
 user_prompt = input("Enter your prompt: ")
