@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbox</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #007BFF;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        #chatbox {
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #userInput {
+            width: 240px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+        #sendBtn {
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .botText {
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        #sendBtn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="chatbox"></div>
+    <input id="userInput" type="text" placeholder="Type a message...">
+    <button id="sendBtn">Send</button>
+
+    <script>
+        $(document).ready(function() {
+            $("#sendBtn").click(function() {
+                var userText = $("#userInput").val();
+                $("#sendBtn").addClass("loading"); // Add loading animation
+                $.get("/get", { msg: userText }).done(function(data) {
+                    var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+                    $("#chatbox").append(botHtml);
+                    $("#userInput").val('');
+                    $("#sendBtn").removeClass("loading"); // Remove loading animation
+                });
+            });
+        });
+    </script>
+</body>
+</html>
