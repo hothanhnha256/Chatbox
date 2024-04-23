@@ -2,7 +2,8 @@ from flask import Flask, render_template, request
 import os
 import replicate
 
-os.environ["REPLICATE_API_TOKEN"] = "r8_bRL9i7D8bFY8vIX6VxWOwgPXcsIqlgn1ZPWOA"
+os.environ["REPLICATE_API_TOKEN"] = "API_KEY"
+# r8_bRL9i7D8bFY8vIX6VxWOwgPXcsIqlgn1ZPWOA
 #r8_UcRdBGEv3oPSQL2qGysOccjdZi6VWcM4R4RJy
 app = Flask(__name__)
 
